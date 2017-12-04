@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Web console <small>KmTronic 8 channels</small></h1>
+</div>
+<div class="col-md-6 col-md-offset-3">
+  <h2>Login</h2>
+  <form name="form" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="username" required minlength="5" maxlength="30" #usernameinput="ngModel"
+      />
+      <div class="help-block" [style.visibility]="usernameinput.errors?'visible':'hidden'">Username is required</div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password" minlength="5" maxlength="30" required
+        #passwordinput="ngModel" />
+      <div class="help-block" [style.visibility]="passwordinput.errors?'visible':'hidden'">Password is required</div>
+    </div>
+    <div class="form-group">
+      <button [disabled]="loading||usernameinput.errors||passwordinput.errors" class="btn btn-primary">Login</button>
+      <div class="help-block">{{message}}</div>
+    </div>
+  </form>
+</div>
