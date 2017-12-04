@@ -18,9 +18,7 @@ const appRoutes: Routes = [
 ];
 
 export function RestangularConfigFactory(RestangularProvider) {
-  // RestangularProvider.setBaseUrl('http://vps487474.ovh.net:65000');
   RestangularProvider.setBaseUrl('http://localhost:8080');
-  // RestangularProvider.setDefaultHeaders({ 'Authorization': 'Bearer UDXPx-Xko0w4BRKajozCVy20X11MRZs1' });
 }
 
 @NgModule({
