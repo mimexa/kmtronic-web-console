@@ -1,58 +1,62 @@
 {
-  "relays": [
-    {
-      "id": 1,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 2,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 3,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 4,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 5,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 6,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 7,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 8,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 9,
-      "isOn": false,
-      "Usage": ""
-    },
-    {
-      "id": 10,
-      "isOn": false,
-      "Usage": ""
-    }
-  ],
+  "settings": {
+    "url": "255.255.255.255",
+    "portNumber": 65000,
+    "relays": [
+      {
+        "id": 1,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 2,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 3,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 4,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 5,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 6,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 7,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 8,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 9,
+        "isOn": false,
+        "Usage": ""
+      },
+      {
+        "id": 10,
+        "isOn": false,
+        "Usage": ""
+      }
+    ]
+  },
   "user": {
-    "userId": "1",
-    "token": "qsch"
+    "userId": "maxime",
+    "token": "maxime"
   }
 }

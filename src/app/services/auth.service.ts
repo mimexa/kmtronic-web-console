@@ -1,27 +1,29 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Restangular } from 'ngx-restangular';
-import 'rxjs/add/operator/map'
+import { Injectable, Inject } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
 
-    userId: string;
-    token: string;
+    public userId: string;
+    public token: string;
 
     constructor(private restangular: Restangular) { }
 
     login(username: string, password: string) {
-        return this.restangular.all('user').post({ username: username, password: password }).toPromise().then((user: any) => {
-            if (user && user.token && user.userId) {
-                this.userId = user.userId;
-                this.token = user.token
+        return this.restangular.all('login').post(
+            {
+                userName: username,
+                password: password
             }
+        ).toPromise().then(token => {
+            this.userId = username;
+            this.token = token.token;
         });
     }
 
     logout() {
         this.userId = null;
-        this.token = null;
     }
 }

@@ -1,5 +1,8 @@
+import { AuthenticationService } from './../../services/auth.service';
 import { RelaysService } from './../../services/relays.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Modal } from 'ngx-modialog/plugins/bootstrap';
+
 @Component({
   selector: 'app-console',
   templateUrl: './console.component.html',
@@ -7,14 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsoleComponent implements OnInit {
 
-  public relays = [];
+  public settings: any = {
+    relays: []
+  };
 
-  constructor(private relayService: RelaysService) { }
+  public userId: string = '';
+  public fileName: string = null;
+  public token: string = '';
+
+  constructor(private relayService: RelaysService,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.relayService.getAll().then(relays => {
-      this.relays = relays;
+    this.relayService.getSettings().then(settings => {
+      this.settings = settings;
+      this.settings.relays.forEach(relay => {
+        relay.descriptionInput = relay.description;
+      });
+      this.userId = this.authenticationService.userId;
+      this.token = this.authenticationService.token;
     });
+  }
+
+  ngAfterViewInit() {
+    var moonlanding = document.getElementById("moonlanding");
+    var moon = document.getElementById("moon");
+    moonlanding.appendChild(moon);
+    moon.style.display = 'block';
+
   }
 
   edit(relay) {
@@ -22,19 +45,30 @@ export class ConsoleComponent implements OnInit {
     relay.descriptionInput = relay.description;
   }
 
-  validate(relay) {
+  validateDescription(relay) {
     relay.isEditable = false;
-    this.put(relay);
-    relay.description = relay.descriptionInput;
+    this.relayService.postDescription(relay).then(update => {
+      relay.description = relay.descriptionInput
+    }).catch(error => {
+      relay.descriptionInput = relay.description;
+    });
   }
 
-  put(relay) {
-    this.relayService.put(relay).then(update => { console.log(update) });
+  putIsOn(relay) {
+    this.relayService.postIsOn(relay).then(update => {
+    }).catch(error => {
+      relay.isOn = !relay.isOn;
+    });
   }
 
   cancel(relay) {
     relay.isEditable = false;
     relay.descriptionInput = relay.description;
+  }
+
+  fileEvent(fileInput: any) {
+    let file = fileInput.target.files[0];
+    this.fileName = file.name;
   }
 
 }
